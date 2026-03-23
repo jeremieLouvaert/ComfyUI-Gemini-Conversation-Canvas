@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-gemini-conversation-canvas"
+description = "Multi-turn conversational image editing powered by Google Gemini — session persistence, edit chaining, visual gallery"
+version = "1.0.0"
+license = { file = "LICENSE" }
+dependencies = ["google-genai", "Pillow", "filelock"]
+
+[project.urls]
+Repository = "https://github.com/jeremieLouvaert/ComfyUI-Gemini-Conversation-Canvas"
+
+[tool.comfy]
+PublisherId = "jeremieLouvaert"
+DisplayName = "ComfyUI Gemini Conversation Canvas"
+Icon = ""
