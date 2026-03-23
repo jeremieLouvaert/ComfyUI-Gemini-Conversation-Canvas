@@ -9,6 +9,6 @@ dependencies = ["google-genai", "Pillow", "filelock"]
 Repository = "https://github.com/jeremieLouvaert/ComfyUI-Gemini-Conversation-Canvas"
 
 [tool.comfy]
-PublisherId = "jeremieLouvaert"
+PublisherId = "akurate"
 DisplayName = "ComfyUI Gemini Conversation Canvas"
 Icon = ""
