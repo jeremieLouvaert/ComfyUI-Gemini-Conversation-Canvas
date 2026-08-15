@@ -2,13 +2,13 @@
 
 Multi-turn conversational image editing for ComfyUI, powered by Google Gemini's native image generation.
 
-Unlike traditional image generation APIs that are fire-and-forget, Gemini maintains conversation context across turns — each edit builds on the previous result with full scene coherence. This node suite brings that capability into ComfyUI with persistent sessions, edit chaining, and a visual gallery.
+Unlike traditional image generation APIs that are fire-and-forget, Gemini maintains conversation context across turns. Each edit builds on the previous result with full scene coherence. This node suite brings that capability into ComfyUI with persistent sessions, edit chaining, and a visual gallery.
 
-## Why Gemini Conversations?
+## Why Gemini conversations?
 
 Most image APIs (DALL-E, Midjourney, Flux) are single-shot: you send a prompt, you get an image. There's no memory between generations.
 
-Gemini is different. Its image generation is native to the language model, so it **remembers** what it generated and can reason about modifications:
+Gemini is different. Its image generation is native to the language model, so it remembers what it generated and can reason about modifications:
 
 ```
 Turn 0: "A cozy cafe interior with warm lighting"        → initial image
@@ -17,9 +17,9 @@ Turn 2: "Make it evening, warm lamp light inside"         → same scene, evenin
 Turn 3: "Add a cat sleeping on the corner chair"          → cat added coherently
 ```
 
-Each turn preserves the scene, characters, and style — no need for ControlNet, IP-Adapter, or manual inpainting.
+Each turn preserves the scene, characters, and style. No need for ControlNet, IP-Adapter, or manual inpainting.
 
-## Included Nodes
+## Included nodes
 
 ### 1. Gemini Session (Start)
 
@@ -38,7 +38,7 @@ Creates a new conversation and generates the initial image.
 
 ### 2. Gemini Edit Turn
 
-Sends an edit instruction to an existing conversation. Chainable — connect multiple in sequence for multi-step edits in a single workflow run.
+Sends an edit instruction to an existing conversation. Chainable: connect multiple in sequence for multi-step edits in a single workflow run.
 
 | Input | Type | Description |
 |-------|------|-------------|
@@ -65,7 +65,7 @@ Outputs all turn images from a session as a batch tensor for visual comparison.
 
 ## Usage
 
-### Basic: Single-Run Multi-Turn Editing
+### Basic: single-run multi-turn editing
 
 Chain multiple Edit Turn nodes for iterative refinement in one workflow execution:
 
@@ -75,7 +75,7 @@ Chain multiple Edit Turn nodes for iterative refinement in one workflow executio
   ↓ image_0                        ↓ image_1                 ↓ image_2
 ```
 
-### Advanced: Cross-Run Session Persistence
+### Advanced: cross-run session persistence
 
 **Run 1:** Generate and save
 ```
@@ -92,7 +92,7 @@ Chain multiple Edit Turn nodes for iterative refinement in one workflow executio
 [Session Load] → [Session Gallery] → [Preview Image]
 ```
 
-### Image-to-Image Editing
+### Image-to-image editing
 
 Connect an existing image to the `input_image` input on Session Start:
 
@@ -100,17 +100,17 @@ Connect an existing image to the `input_image` input on Session Start:
 [Load Image] → [Session Start: "remove the background and replace with a beach"] → image
 ```
 
-## API Key Setup
+## API key setup
 
 Provide your Google AI API key via one of these methods (checked in order):
 
-1. **Direct input** — paste into the `api_key` field on Session Start or Session Load
-2. **Environment variable** — set `GEMINI_API_KEY` in your system environment
-3. **Key file** — create a `gemini_api_key.txt` file in your ComfyUI root directory
+1. Direct input: paste into the `api_key` field on Session Start or Session Load
+2. Environment variable: set `GEMINI_API_KEY` in your system environment
+3. Key file: create a `gemini_api_key.txt` file in your ComfyUI root directory
 
 Get a free API key at [Google AI Studio](https://aistudio.google.com/apikey).
 
-## Output Files
+## Output files
 
 All session data is stored under your ComfyUI output directory:
 
@@ -135,12 +135,12 @@ Restart ComfyUI.
 
 ### Dependencies
 
-- **google-genai** >= 1.0.0 — Google's Gen AI Python SDK
-- **filelock** — concurrent-safe file operations
-- **Pillow** — image conversion
-- **PyTorch** — already present in any ComfyUI installation
+- **google-genai** >= 1.0.0: Google's Gen AI Python SDK
+- **filelock**: concurrent-safe file operations
+- **Pillow**: image conversion
+- **PyTorch**: already present in any ComfyUI installation
 
-## Supported Models
+## Supported models
 
 | Model | ID | Notes |
 |-------|----|-------|
@@ -149,11 +149,11 @@ Restart ComfyUI.
 
 ## Tips
 
-- **Be specific with edit instructions.** "Add a red umbrella to the person on the left" works better than "add umbrella."
-- **The model remembers everything.** You can reference elements from previous turns: "make the cat from turn 3 larger."
-- **Aspect ratio can change per turn.** Start in 1:1, then switch to 16:9 for a cinematic crop.
-- **Save frequently.** Sessions persist across ComfyUI restarts, so save after important edits.
-- **Use the Gallery node** to compare all turns side by side and verify the edit progression.
+- Be specific with edit instructions. "Add a red umbrella to the person on the left" works better than "add umbrella."
+- The model remembers everything. Reference elements from previous turns: "make the cat from turn 3 larger."
+- Aspect ratio can change per turn. Start in 1:1, then switch to 16:9 for a cinematic crop.
+- Save frequently. Sessions persist across ComfyUI restarts, so save after important edits.
+- Use the Gallery node to compare all turns side by side and verify the edit progression.
 
 ## License
 
