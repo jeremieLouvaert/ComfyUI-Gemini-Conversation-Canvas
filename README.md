@@ -1,5 +1,7 @@
 # ComfyUI Gemini Conversation Canvas
 
+![ComfyUI Gemini Conversation Canvas](assets/hero.jpg)
+
 Multi-turn conversational image editing for ComfyUI, powered by Google Gemini's native image generation.
 
 Unlike traditional image generation APIs that are fire-and-forget, Gemini maintains conversation context across turns. Each edit builds on the previous result with full scene coherence. This node suite brings that capability into ComfyUI with persistent sessions, edit chaining, and a visual gallery.
