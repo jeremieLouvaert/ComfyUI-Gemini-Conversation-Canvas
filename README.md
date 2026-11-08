@@ -146,8 +146,10 @@ Restart ComfyUI.
 
 | Model | ID | Notes |
 |-------|----|-------|
-| Gemini 2.5 Flash Image | `gemini-2.5-flash-preview-image-generation` | Fast, affordable, production-ready |
-| Gemini 2.0 Flash Image | `gemini-2.0-flash-preview-image-generation` | Previous generation |
+| Gemini 3 Pro Image (Nano Banana Pro) | `gemini-3-pro-image-preview` | Best quality, default |
+| Nano Banana 2.1 | `gemini-nano-banana-2.1` | Newest Flash, cheapest per pixel |
+| Gemini 3.1 Flash Image (Nano Banana 2) | `gemini-3.1-flash-image` | Balanced. The old `-preview` name still works and is routed here |
+| Gemini 2.5 Flash Image | `gemini-2.5-flash-image` | Cheapest, 1K only |
 
 ## Tips
 

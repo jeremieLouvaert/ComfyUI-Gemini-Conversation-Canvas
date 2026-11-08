@@ -57,9 +57,16 @@ GEMINI_SESSION_TYPE = "GEMINI_SESSION"
 
 MODELS = [
     "gemini-3-pro-image-preview",
-    "gemini-3.1-flash-image-preview",
+    "gemini-nano-banana-2.1",
+    "gemini-3.1-flash-image",
     "gemini-2.5-flash-image",
+    "gemini-3.1-flash-image-preview",  # legacy name, routed to gemini-3.1-flash-image
 ]
+
+# Retired-name aliases: kept in MODELS so saved workflows still validate, but the
+# request goes to the stable ID (AI Studio lists Nano Banana 2 as stable, 2026-11-08).
+MODEL_ALIASES = {"gemini-3.1-flash-image-preview": "gemini-3.1-flash-image"}
+
 
 ASPECT_RATIOS = ["auto", "1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9"]
 
@@ -237,7 +244,7 @@ def _rebuild_chat(session):
         history.append(types.Content.model_validate(item))
 
     chat = client.chats.create(
-        model=session["model"],
+        model=MODEL_ALIASES.get(session["model"], session["model"]),
         config=types.GenerateContentConfig(
             response_modalities=["TEXT", "IMAGE"],
         ),
@@ -312,6 +319,7 @@ class GeminiSessionStart:
 
         resolved_key = _resolve_api_key(api_key)
         client = _get_client(resolved_key)
+        model = MODEL_ALIASES.get(model, model)
         session = _create_empty_session(session_name, model, resolved_key)
         sdir = _session_dir(session_name)
 
